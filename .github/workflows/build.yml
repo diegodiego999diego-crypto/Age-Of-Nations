@@ -25,8 +25,9 @@ jobs:
         with:
           # Evita que intente instalar el paquete 'tools' obsoleto que causa el error
           packages: ''
-          accept-android-sdk-licenses: 'yes'
-          log-accepted-android-sdk-licenses: 'false'
+          # CORREGIDO: Se usa un valor booleano (true) en lugar de una cadena ('yes')
+          accept-android-sdk-licenses: true
+          log-accepted-android-sdk-licenses: false
 
       - name: Install Android SDK Packages & Accept Licenses
         run: |
