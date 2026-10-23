@@ -23,21 +23,14 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
         with:
-          # Evita que intente instalar el paquete 'tools' obsoleto que causa el error
           packages: ''
-          # CORREGIDO: Se usa un valor booleano (true) en lugar de una cadena ('yes')
           accept-android-sdk-licenses: true
           log-accepted-android-sdk-licenses: false
 
       - name: Install Android SDK Packages & Accept Licenses
         run: |
-          # Instalar los paquetes necesarios para Godot 4.3
           sdkmanager "platform-tools" "build-tools;34.0.0" "platforms;android-34" "cmdline-tools;latest"
-          
-          # Aceptar licencias automáticamente de forma silenciosa
           yes | sdkmanager --licenses > /dev/null 2>&1 || true
-          
-          # Respaldo: escribir manualmente los hashes de licencia por si acaso
           mkdir -p $ANDROID_HOME/licenses
           echo -e "\n8933bad161af4b6a5b573652ffc7aaf3aee85a47" > $ANDROID_HOME/licenses/android-sdk-license
           echo -e "\nd56f5187479451eabf01fb78af6dfcb131b33910" >> $ANDROID_HOME/licenses/android-sdk-license
@@ -53,10 +46,13 @@ jobs:
       - name: Install Godot Export Templates
         run: |
           wget -q https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_export_templates.tpz
-          mkdir -p ~/.local/share/godot/export_templates
-          unzip -q Godot_v4.3-stable_export_templates.tpz -d ~/.local/share/godot/export_templates/
-          mv ~/.local/share/godot/export_templates/templates/* ~/.local/share/godot/export_templates/4.3.stable/ 2>/dev/null || true
-          rm -rf ~/.local/share/godot/export_templates/templates
+          mkdir -p ~/.local/share/godot/export_templates/4.3.stable
+          unzip -q Godot_v4.3-stable_export_templates.tpz
+          # Mover TODO el contenido de la carpeta 'templates' a la ruta exacta de 4.3.stable
+          mv templates/* ~/.local/share/godot/export_templates/4.3.stable/
+          rm -rf templates/
+          # Verificar que las plantillas de Android están presentes
+          ls -la ~/.local/share/godot/export_templates/4.3.stable/ | grep android
 
       - name: Pre-heat Godot Project (Import Assets)
         run: |
@@ -67,7 +63,6 @@ jobs:
         run: |
           cd project
           mkdir -p build
-          # Asegurar que Godot encuentre el SDK
           export ANDROID_SDK_ROOT=$ANDROID_HOME
           godot --headless --export-debug "Android" build/age-of-nations-debug.apk
 
