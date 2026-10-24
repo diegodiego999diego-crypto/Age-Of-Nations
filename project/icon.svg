@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <rect width="128" height="128" rx="20" fill="#1b2b45"/>
+  <circle cx="64" cy="58" r="38" fill="#3f7a4f"/>
+  <path d="M26 58 Q64 20 102 58 Q64 96 26 58Z" fill="#5aa06a" opacity="0.65"/>
+  <path d="M30 44 L44 52 L38 64 L52 70 L46 84 L34 78Z" fill="#d8b26a"/>
+  <path d="M74 40 L88 46 L96 62 L84 72 L72 62Z" fill="#d8b26a"/>
+  <path d="M58 86 L70 92 L62 104 L54 96Z" fill="#f2f2f2"/>
+  <text x="64" y="122" font-family="sans-serif" font-size="13" font-weight="bold" fill="#f3e6c4" text-anchor="middle">AON</text>
+</svg>

@@ -19,3 +19,6 @@ build/
 *.apk
 *.aab
 *.pck
+# Capas pesadas del mapa (se sirven desde versiones, no desde git)
+project/game/world_terrain.png
+project/game/*.import

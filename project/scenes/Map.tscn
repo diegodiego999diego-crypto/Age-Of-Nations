@@ -4,19 +4,3 @@
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_map")
-
-[node name="Background" type="ColorRect" parent="."]
-offset_left = -400.0
-offset_top = -300.0
-offset_right = 400.0
-offset_bottom = 300.0
-color = Color(0.2, 0.3, 0.2, 1)
-
-[node name="MapLabel" type="Label" parent="."]
-offset_left = -100.0
-offset_top = -20.0
-offset_right = 100.0
-offset_bottom = 20.0
-text = "World Map"
-horizontal_alignment = 1
-vertical_alignment = 1
